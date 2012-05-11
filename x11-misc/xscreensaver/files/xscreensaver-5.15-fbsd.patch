@@ -1,0 +1,38 @@
+*** driver/xscreensaver.c.old	2012-05-07 13:30:06.000000000 -0400
+--- driver//xscreensaver.c	2012-05-07 13:30:13.000000000 -0400
+***************
+*** 144,153 ****
+--- 144,155 ----
+  #include <ctype.h>
+  #include <X11/Xlib.h>
+  
++ #ifndef __FreeBSD__
+  #ifdef ENABLE_NLS
+  # include <locale.h>
+  # include <libintl.h>
+  #endif /* ENABLE_NLS */
++ #endif
+  
+  #include <X11/Xlibint.h>
+  
+***************
+*** 1417,1422 ****
+--- 1419,1426 ----
+  
+         -- jwz, 24-Sep-2011
+     */
++ 
++ #ifndef __FreeBSD__
+  #ifdef ENABLE_NLS
+    if (!setlocale (LC_CTYPE, ""))
+      fprintf (stderr, "%s: warning: could not set default locale\n",
+***************
+*** 1425,1430 ****
+--- 1429,1435 ----
+    bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+    textdomain (GETTEXT_PACKAGE);
+  #endif /* ENABLE_NLS */
++ #endif
+  
+    memset(si, 0, sizeof(*si));
+    global_si_kludge = si;	/* I hate C so much... */

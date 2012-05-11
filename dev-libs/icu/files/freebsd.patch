@@ -1,0 +1,13 @@
+Index: source/common/putilimp.h
+===================================================================
+--- source/common/putilimp.h    (revision 31764)
++++ source/common/putilimp.h    (working copy)
+@@ -116,6 +116,8 @@
+ #   define U_TIMEZONE __timezone
+ #elif U_PLATFORM_USES_ONLY_WIN32_API
+ #   define U_TIMEZONE _timezone
++#elif U_PLATFORM == U_PF_BSD && !defined(__FreeBSD_kernel__)
++   /* not defined */
+ #elif U_PLATFORM == U_PF_OS400
+    /* not defined */
+ #else
